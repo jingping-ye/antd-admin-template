@@ -7,7 +7,7 @@ import { beforeRouterHook, afterRouterHook } from "./common/routerHook";
 
 import "./common/optimize";
 
-import { businessRoutes } from "./modules/index";
+// import { businessRoutes } from "./modules/index";
 
 const routes = [
   {
@@ -24,19 +24,17 @@ const routes = [
     redirect: "/system/user",
   },
   {
-    path: "/404",
+    path: "*",
     name: "NotFound",
     component: () => import("@/views/exception/404"),
   },
-  ...businessRoutes,
-  { path: "*", redirect: "/404" },
 ];
 
 const router = new VueRouter({
   routes,
 });
 
-router.beforeEach(beforeRouterHook);
+router.beforeEach((to, from, next) => beforeRouterHook(to, from, next, router));
 router.afterEach(afterRouterHook);
 
 export default router;

@@ -1,4 +1,3 @@
-// src/layouts/LFooter/LFooter.vue
 <template>
   <footer class="l-footer">copyright©{{ new Date().getFullYear() }} 风车技术 Feng 提供服务</footer>
 </template>

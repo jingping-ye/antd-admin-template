@@ -6,9 +6,11 @@
       <span><a-icon type="search" style="font-size:18px;"/></span>
       <span><a-icon type="bell" style="font-size:18px;"/></span>
       <span>
-        <img :src="defaultAvatar" class="user-avatar" />
         <a-dropdown>
-          <span class="userName">{{ userName }}</span>
+          <span>
+            <img :src="defaultAvatar" class="user-avatar" />
+            <span class="userName">{{ userName }}</span>
+          </span>
           <a-menu slot="overlay" @click="chooseSetting">
             <a-menu-item key="logout"> <a-icon type="logout" /> <span>退出登录</span></a-menu-item>
           </a-menu>

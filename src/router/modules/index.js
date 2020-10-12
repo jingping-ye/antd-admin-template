@@ -1,4 +1,3 @@
-//	src/router/modules/index.js
 const businessRoutes = [
   {
     path: "/system",

@@ -29,14 +29,14 @@ const cdn = {
 
 const vueConfig = {
   devServer: {
-    port: 8080,
+    port: 8089,
     open: true,
     proxy: {
-      "/api": {
+      "/proxy-service": {
         target: BaseURL,
         changeOrigin: true,
         pathRewrite: {
-          "^/api": "/",
+          "^/proxy-service": "/",
         },
       },
     },

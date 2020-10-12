@@ -21,6 +21,9 @@ import "normalize.css/normalize.css";
 //  global css
 import "@/styles/index.scss";
 
+//  mock
+import "./mock";
+
 Vue.config.productionTip = false;
 
 new Vue({

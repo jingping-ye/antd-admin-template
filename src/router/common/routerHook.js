@@ -14,6 +14,8 @@ const whiteList = ["NotFound", "Login"];
  * 路由跳转前钩子
  */
 const beforeRouterHook = async function(to, from, next) {
+  console.log("to", to);
+  console.log("from", from);
   NProgress.start();
   document.title = getPageTitle(to.meta.title);
 

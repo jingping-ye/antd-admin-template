@@ -7,9 +7,17 @@ import { jsonToHump, jsonToUnderline } from "./httpFormTran";
 import { getToken, removeToken } from "@/utils/auth";
 
 const isProxy = process.env.VUE_APP_API_PROXY === "1";
+const isMock = process.env.VUE_APP_API_MOCK === "1";
 console.log("当前是否处于代理服务器下：", isProxy);
+console.log("是否开启mock", isMock);
 
-const BaseURL = isProxy ? "/api" : process.env.VUE_APP_API_BASE_URL; // 基础路径;
+// console.log("process", vueCo);
+let BaseURL = process.env.VUE_APP_API_BASE_URL;
+if (isProxy) {
+  BaseURL = "/proxy-service";
+} else {
+  BaseURL = "";
+}
 const Timeout = 5000; // 超时时间
 const NormalCode = 4000; // 从后台正常返回的代码
 const ErrorMessage = (msg) => {
@@ -64,15 +72,15 @@ httpInstance.interceptors.request.use(
 //  响应拦截器
 httpInstance.interceptors.response.use(
   (response) => {
-    console.log("response", response);
+    console.log("response", JSON.stringify(response));
     if (response.status === 200) {
-      if (response.data.err_code) {
+      if (response.data.code) {
         //  处理正常json格式文件
         response.data = jsonToHump(response.data); // 转为小驼峰
-        if (response.data.errCode === NormalCode) {
-          return Promise.resolve(response.data.errData);
+        if (response.data.code === NormalCode) {
+          return Promise.resolve(response.data.errMsg);
         } else {
-          ErrorMessage(`错误(错误代码${response.data.errCode}):${response.data.errInfo}`);
+          ErrorMessage(`错误(错误代码${response.data.code}):${response.data.errMsg}`);
           return Promise.reject(new Error("请求失败"));
         }
       } else {
