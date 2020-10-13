@@ -72,7 +72,7 @@ httpInstance.interceptors.request.use(
 //  响应拦截器
 httpInstance.interceptors.response.use(
   (response) => {
-    console.log("response", JSON.stringify(response));
+    console.log("response", response);
     if (response.status === 200) {
       if (response.data.code) {
         //  处理正常json格式文件

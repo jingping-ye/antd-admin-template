@@ -3,6 +3,8 @@ import { getToken } from "@/utils/auth";
 import { getPageTitle } from "./getPageTitle";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import store from "../../store";
+import { setDaynamicRoutes } from "./handleDynamicRoutes";
 
 //  进度条配置
 NProgress.configure({ showSpinner: false });
@@ -13,17 +15,21 @@ const whiteList = ["NotFound", "Login"];
 /**
  * 路由跳转前钩子
  */
-const beforeRouterHook = async function(to, from, next) {
-  console.log("to", to);
-  console.log("from", from);
+const beforeRouterHook = async function(to, from, next, router) {
   NProgress.start();
+
   document.title = getPageTitle(to.meta.title);
 
-  if (whiteList.indexOf(to.name) !== -1) {
-    next();
+  const token = getToken();
+  if (token && token.length > 0) {
+    const hasMenuList = store.state.app.menuList.length > 0;
+    if (!hasMenuList) {
+      setDaynamicRoutes(router, to, next);
+    } else {
+      next();
+    }
   } else {
-    const token = getToken();
-    if (token && token.length > 0) {
+    if (whiteList.indexOf(to.name) !== -1) {
       next();
     } else {
       message.error("请先登录后再操作!");

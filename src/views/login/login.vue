@@ -88,75 +88,6 @@ export default {
   computed: {},
   watch: {},
   methods: {
-    clickMe() {
-      // const _this = this;
-      // console.log("genMenuList", genMenuList());
-    },
-    getMenuListRequestOri() {
-      let menuList = [
-        {
-          path: "/system",
-          name: "SystemManage",
-          redirect: "/system/user",
-          component: "@/layouts/index",
-          meta: {
-            title: "系统管理",
-          },
-          children: [
-            {
-              path: "user",
-              name: "UserManage",
-              component: "@/views/systemManage/userManage",
-              meta: {
-                title: "用户管理",
-                goldPrice: true,
-              },
-            },
-            {
-              path: "permission",
-              name: "PermissionManage",
-              component: "@/views/systemManage/permissionManage",
-              meta: {
-                title: "权限管理",
-              },
-            },
-          ],
-        },
-      ];
-      return menuList;
-    },
-    getMenuListRequest() {
-      let menuList = [
-        {
-          path: "/system",
-          name: "SystemManage",
-          redirect: "/system/user",
-          component: (resolve) => require(["@/layouts/index.vue"], resolve),
-          meta: {
-            title: "系统管理",
-          },
-          children: [
-            {
-              path: "/system/user",
-              name: "UserManage",
-              component: (resolve) => require(["@/views/systemManage/userManage.vue"], resolve),
-              meta: {
-                title: "用户管理",
-              },
-            },
-            {
-              path: "/system/permission",
-              name: "PermissionManage",
-              component: (resolve) => require(["@/views/systemManage/permissionManage.vue"], resolve),
-              meta: {
-                title: "权限管理",
-              },
-            },
-          ],
-        },
-      ];
-      return menuList;
-    },
     /**
      * 点击“登录”
      */
@@ -171,31 +102,6 @@ export default {
         }
       });
     },
-    genMenuList(menuList) {
-      const newMenuList = menuList;
-      const lazyLoad = (name) => {
-        const componentName = name.replace("@/", "");
-        return (resolve) => require([`@/${componentName}`], resolve);
-        // if (type == 1) {
-        //   return (resolve) => require([`@/${name}`], resolve);
-        // } else {
-        //   return (resolve) => require([`@/views/${name}`], resolve);
-        // }
-      };
-      const getTree = function(nodeList) {
-        nodeList.map((item) => {
-          if (item.component) {
-            item["component"] = lazyLoad(item.component, item.meta.type);
-          }
-          if (item.children) {
-            getTree(item.children);
-          }
-          return item;
-        });
-      };
-      getTree(newMenuList);
-      return newMenuList;
-    },
     /**
      * HTTP REQUEST
      * 验证用户
@@ -204,61 +110,18 @@ export default {
       setTimeout(() => {
         //  假设获取到合法的token
         setToken("1231312");
-        this.$http
-          .get("/menu/list")
-          .then((res) => {
-            console.log("res===", JSON.stringify(res));
-            this.$store.commit("app/setMenuRouteLoaded", false);
-            this.$store.commit("menu/setMenuList", []);
-            const menuList = this.getMenuListRequestOri();
-            // const menuList = res;
-            // this.$store.commit("menu/setMenuList", menuList);
-            const dynamicMenuList = this.genMenuList(menuList);
-            // console.log("menuList1", this.getMenuListRequest());
-            // console.log("dynamicMenuList", dynamicMenuList);
-            // this.$router.options.routes.push(...dynamicMenuList);
-            this.$router.addRoutes([...dynamicMenuList]);
-            // this.$router.options.routes = [...this.$router.options.routes, ...dynamicMenuList];
-
-            console.log("this.$router", this.$router);
-            if (this.$route.query.redirect) {
-              this.$router.push(this.$route.query.redirect);
-            } else {
-              this.$router.push("/feng");
-            }
-          })
-          .catch((err) => {
-            console.log("err", err);
-          });
+        if (this.$route.query.redirect) {
+          this.$router.push(this.$route.query.redirect);
+        } else {
+          this.$router.push("/feng");
+        }
       }, 1000);
       this.isLoading = false;
-    },
-    // getMenuListRequest() {
-    //   return this.$http.get("/menu/list");
-    // },
-    getAddressListRequest() {
-      this.$http
-        .get(`/api/address/list`, {
-          params: {
-            pageNum: 1,
-            pageSize: 10,
-          },
-        })
-        .then((res) => {
-          console.log("res===", res);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
     },
   },
   filters: {},
   created() {},
-  mounted() {
-    this.$http.get("/menu/list").then((res) => {
-      console.log("========", res);
-    });
-  },
+  mounted() {},
   destoryed() {},
 };
 </script>

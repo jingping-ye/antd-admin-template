@@ -16,23 +16,23 @@ Mock.mock("/menu/list", {
       path: "/system",
       name: "SystemManage",
       redirect: "/system/user",
-      component: "@/layouts/index.vue",
+      component: "/layouts/index",
       meta: {
         title: "系统管理",
       },
       children: [
         {
-          path: "user",
+          path: "/system/user",
           name: "UserManage",
-          component: "@/views/systemManage/userManage.vue",
+          component: "/views/systemManage/userManage",
           meta: {
             title: "用户管理",
           },
         },
         {
-          path: "permission",
+          path: "/system/permission",
           name: "PermissionManage",
-          component: "@/views/systemManage/permissionManage.vue",
+          component: "/views/systemManage/permissionManage",
           meta: {
             title: "权限管理",
           },

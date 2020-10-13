@@ -2,19 +2,19 @@
  * Title: app
  * Author: jingping.ye
  * Date: 2020-10-08 15:18:01
- * Description: App文档
+ * Description: 应用级vuex
  * LastModifiedDate:2020-10-08 15:18:01
  * LastModifiedDescription: 修改描述
  */
 const state = {
-  menuRouteLoaded: false, // 菜单和路由是否已经加载
+  menuList: [], // 菜单列表
 };
 
 const getters = {};
 
 const mutations = {
-  setMenuRouteLoaded(state, value) {
-    state.menuRouteLoaded = value;
+  setMenuList(state, value) {
+    state.menuList = value;
   },
 };
 

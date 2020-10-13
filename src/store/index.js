@@ -3,7 +3,6 @@ import Vuex from "vuex";
 
 import app from "./app";
 import user from "./user";
-import menu from "./menu";
 
 //  数据加密
 import SecureLS from "secure-ls";
@@ -23,12 +22,11 @@ export default new Vuex.Store({
         setItem: (key, value) => ls.set(key, value),
         removeItem: (key) => ls.remove(key),
       },
-      paths: ["menu.menuList"],
+      paths: [],
     }),
   ],
   modules: {
     app,
     user,
-    menu,
   },
 });

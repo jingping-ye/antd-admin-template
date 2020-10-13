@@ -47,7 +47,8 @@ export default {
     chooseSetting({ key }) {
       if (key === "logout") {
         removeToken();
-        this.$router.push("/login");
+        this.$router.push("/");
+        console.log("退出登录");
       }
     },
   },

@@ -17,7 +17,7 @@
 </template>
 <script>
 import LSidebarItem from "./LSidebarItem.js";
-import { businessRoutes } from "@/router/modules/index.js";
+import { mapState } from "vuex";
 export default {
   name: "sidebar",
   mixins: [],
@@ -28,7 +28,6 @@ export default {
   data() {
     return {
       //  常量
-      businessRoutes,
       //  状态
       flag: true,
       openKeys: [],
@@ -39,9 +38,9 @@ export default {
     /**
      * 路由
      */
-    routes() {
-      return this.businessRoutes;
-    },
+    ...mapState({
+      routes: (state) => state.app.menuList,
+    }),
   },
   watch: {
     $route: {
@@ -70,13 +69,11 @@ export default {
 
       return false;
     },
-    test() {
-      console.log("Hello World!");
-    },
   },
   filters: {},
   created() {},
   mounted() {},
+  beforeDestroy() {},
   destoryed() {},
 };
 </script>

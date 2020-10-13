@@ -29,7 +29,11 @@ const SubMenu = {
       return true;
     },
     comPath(path) {
-      return `${this.baseUrl}/${path}`;
+      if (path.startsWith("/")) {
+        return path;
+      } else {
+        return `${this.baseUrl}/${path}`;
+      }
     },
     /***
      * 判断是否无显示的子路由
