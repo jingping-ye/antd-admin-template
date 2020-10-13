@@ -41,7 +41,7 @@ const setDaynamicRoutes = async function(router, to, next) {
     .then((res) => {
       let menuList = JSON.parse(JSON.stringify(res));
       let dynamicMenuList = formMenuList(menuList);
-      store.commit("app/setMenuList", menuList);
+
       dynamicMenuList.push({
         path: "*",
         name: "NotFound",
@@ -50,7 +50,11 @@ const setDaynamicRoutes = async function(router, to, next) {
           title: "找不到页面",
         },
       });
+
+      store.commit("app/setMenuList", menuList);
+
       router._addRoutes(dynamicMenuList);
+
       next({ ...to, replace: true });
     })
     .catch((err) => {
