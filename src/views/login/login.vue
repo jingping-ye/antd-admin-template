@@ -18,9 +18,8 @@
             </a-input>
           </a-form-model-item>
           <a-form-model-item prop="password">
-            <a-input v-model="loginForm.password" type="password" placeholder="请输入密码" autocomplete="on">
-              <a-icon slot="prefix" type="lock" style="color:rgba(0,0,0,.25)" />
-            </a-input>
+            <a-input-password v-model="loginForm.password" type="password" placeholder="请输入密码" autocomplete="on">
+            </a-input-password>
           </a-form-model-item>
           <a-form-model-item>
             <a-button type="primary" html-type="submit" block :loading="isLoading" :disabled="isLoading">
