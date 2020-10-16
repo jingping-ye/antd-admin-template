@@ -26,6 +26,14 @@ const businessRoutes = [
       },
     ],
   },
+  {
+    path: "/editor",
+    name: "Editor",
+    component: () => import("@/views/editor/editor"),
+    meta: {
+      title: "编辑器",
+    },
+  },
 ];
 
 export { businessRoutes };

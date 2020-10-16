@@ -39,7 +39,7 @@ export default {
      * 路由
      */
     ...mapState({
-      routes: (state) => state.app.menuList,
+      routes: (state) => state.app.menuList[0].children,
     }),
   },
   watch: {

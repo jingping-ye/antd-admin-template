@@ -4,9 +4,7 @@
     <div class="lay-out-body">
       <l-sidebar class="l-sidebar" />
       <div class="main-box">
-        <div class="nav-header">
-          <div class="breadcrumb-nav"><Breadcrumb /></div>
-        </div>
+        <Breadcrumb />
         <div class="main-container">
           <l-main />
         </div>
@@ -49,9 +47,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.breadcrumb-nav {
-  display: inline-block;
-}
 .lay-out-body {
   height: 100%;
   display: flex;

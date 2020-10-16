@@ -37,6 +37,15 @@ Mock.mock("/menu/list", {
             title: "权限管理",
           },
         },
+        {
+          path: "/editor",
+          name: "Editor",
+          component: "/views/editor/editor",
+          meta: {
+            title: "编辑器",
+            breadcrumb: false,
+          },
+        },
       ],
     },
   ],

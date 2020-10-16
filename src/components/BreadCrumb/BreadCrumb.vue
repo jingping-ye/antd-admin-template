@@ -1,5 +1,5 @@
 <template>
-  <div class="breadcrumb" v-if="isShowBreadcrumb">
+  <div class="nav-header" v-if="isShow">
     <a-breadcrumb separator="/">
       <a-breadcrumb-item v-for="route in navList" :key="route.path">
         <router-link :to="route.path">
@@ -42,6 +42,8 @@ export default {
       } else {
         this.isShow = true;
       }
+
+      console.log("this.isShow", this.isShow);
     },
     getNavList() {
       let matched = this.$route.matched.filter((item) => item.meta && item.meta.title);
