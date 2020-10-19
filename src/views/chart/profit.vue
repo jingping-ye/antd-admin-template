@@ -94,6 +94,7 @@ export default {
             color: "#000", // 文字颜色
           },
           formatter: function(params) {
+            //  数据
             const overallGrid = params.filter((item) => item.seriesName === "策略收益")[0];
             const benchmarkGrid = params.filter((item) => item.seriesName === "基准收益")[0];
             const earnGrid = params.filter((item) => item.seriesName === "当日盈利")[0];
@@ -101,10 +102,13 @@ export default {
             const buyGrid = params.filter((item) => item.seriesName === "当日开仓")[0];
             const sellGrid = params.filter((item) => item.seriesName === "当日平仓")[0];
 
+            //  时间
+            const formatTime = _this.$moment(`20${benchmarkGrid.axisValueLabel} 16:00`).format("dddd, MMMDo, HH:mm");
+
             return (
               '<span style="font-size:12px">' +
               '<span style="font-size:10px;">' +
-              _this.$moment(Number(benchmarkGrid.axisValueLabel)).format("dddd, MMMDo, HH:mm") +
+              formatTime +
               "</span>" +
               "<br />" +
               `${overallGrid.marker} ${overallGrid.seriesName}: <span style="font-weight:bold;">  ${overallGrid.value}%  </span></br>` +
@@ -128,7 +132,7 @@ export default {
               "</span>"
             );
           },
-          extraCssText: "box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); width:150px;", // 设置额外的css
+          extraCssText: "box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); min-width:150px;", // 设置额外的css
         },
         axisPointer: {
           //  坐标轴指示器
@@ -166,7 +170,7 @@ export default {
         xAxis: [
           {
             type: "category",
-            data: strRawCategoryData,
+            data: categoryData,
             boundaryGap: true,
             axisLine: {
               onZero: true,
@@ -248,13 +252,12 @@ export default {
             axisLabel: {
               show: true,
               inside: true,
-              formatter: function(value, index) {
+              formatter: function(value) {
                 return toKUnit(value, 0);
               },
               fontSize: 10,
               verticalAlign: "bottom",
             }, // 显示y轴标签
-            axisLine: { show: true },
             axisTick: { show: false },
             splitLine: { show: true },
             nameTextStyle: {
@@ -277,13 +280,12 @@ export default {
             axisLabel: {
               show: true,
               inside: true,
-              formatter: function(value, index) {
+              formatter: function(value) {
                 return toKUnit(value, 0);
               },
               fontSize: 10,
               verticalAlign: "bottom",
             }, // 显示y轴标签
-            axisLine: { show: true },
             axisTick: { show: false },
             splitLine: { show: true },
             nameTextStyle: {
@@ -331,7 +333,7 @@ export default {
               data: [
                 {
                   name: "最大回撤",
-                  coord: ["1555660800000", "26.31"],
+                  coord: ["19-04-19", "26.31"],
                   symbol:
                     "path://M 5.5 0.5 C 12.16 0.5 12.16 10.5 5.5 10.5 C -1.1600000000000001 10.5 -1.1600000000000001 0.5 5.5 0.5 Z M 5.5 10.5 L 5.5 2.598240000000004",
                   symbolSize: 10,
@@ -345,7 +347,7 @@ export default {
                 },
                 {
                   name: "最大回撤",
-                  coord: ["1560931200000", "13.32"],
+                  coord: ["19-06-19", "13.32"],
                   symbol:
                     "path://M 5.5 0.5 C 12.16 0.5 12.16 10.5 5.5 10.5 C -1.1600000000000001 10.5 -1.1600000000000001 0.5 5.5 0.5 Z M 5.5 10.5 L 5.5 2.598240000000004",
                   symbolSize: 10,
