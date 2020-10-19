@@ -7,6 +7,9 @@ const BaseURL = process.env.VUE_APP_API_BASE_URL; // 基础路径;
 const path = require("path");
 const resolve = (dir) => path.join(__dirname, dir);
 
+//  monaco-editor
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+
 const cdn = {
   externals: {
     vue: "Vue",
@@ -49,6 +52,56 @@ const vueConfig = {
         return args;
       });
     }
+
+    config.plugin("monaco-editor").use(MonacoWebpackPlugin, [
+      {
+        languages: ["json", "python"], // 要支持的语言
+        //  这里是一系列的功能，具体可以去查询文档
+        // features: [
+        //   "accessibilityHelp",
+        //   "bracketMatching",
+        //   "caretOperations",
+        //   "clipboard",
+        //   "codeAction",
+        //   "codelens",
+        //   "colorDetector",
+        //   "comment",
+        //   "contextmenu",
+        //   "coreCommands",
+        //   "cursorUndo",
+        //   "dnd",
+        //   "find",
+        //   "folding",
+        //   "fontZoom",
+        //   "format",
+        //   "gotoError",
+        //   "gotoLine",
+        //   "gotoSymbol",
+        //   "hover",
+        //   "iPadShowKeyboard",
+        //   "inPlaceReplace",
+        //   "inspectTokens",
+        //   "linesOperations",
+        //   "links",
+        //   "multicursor",
+        //   "parameterHints",
+        //   "quickCommand",
+        //   "quickOutline",
+        //   "referenceSearch",
+        //   "rename",
+        //   "smartSelect",
+        //   "snippets",
+        //   "suggest",
+        //   "toggleHighContrast",
+        //   "toggleTabFocusMode",
+        //   "transpose",
+        //   "wordHighlighter",
+        //   "wordOperations",
+        //   "wordPartOperations",
+        // ],
+        features: ["bracketMatching", "coreCommands", "find", "folding", "quickOutline", "format"],
+      },
+    ]);
 
     //  别名
     config.resolve.alias
