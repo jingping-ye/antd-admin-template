@@ -1,6 +1,6 @@
 <template>
   <div class="editor">
-    editor组件
+    <div>只读状态</div>
     <MonacoEditor
       v-if="visible"
       height="300px"
@@ -10,6 +10,20 @@
       :options="options"
       @blur="(e) => onBlur(e)"
     />
+    <div>
+      编辑状态
+    </div>
+    <div>
+      <MonacoEditor
+        v-if="visible"
+        height="1000px"
+        theme="vs-dark"
+        :value="value"
+        language="python"
+        :options="editOptions"
+        @blur="(e) => onBlur(e)"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -28,9 +42,10 @@ export default {
   data() {
     return {
       visible: true,
-      value: "12123",
+      value: "",
       //  常量
-      options: { fontSize: 18, minimap: { enable: false } },
+      options: { fontSize: 14, minimap: { enable: false }, readOnly: true, lineNumbers: false },
+      editOptions: { fontSize: 14, minimap: { enable: false } },
       //  状态
       flag: true,
       //  变量
@@ -40,13 +55,25 @@ export default {
   computed: {},
   watch: {},
   methods: {
+    getStrategyRequest() {
+      this.$http
+        .get("/empty_strategy")
+        .then((res) => {
+          this.value = res;
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+    },
     onBlur(value) {
       console.log("value", value);
     },
   },
   filters: {},
   created() {},
-  mounted() {},
+  mounted() {
+    this.getStrategyRequest();
+  },
   destoryed() {},
 };
 </script>
