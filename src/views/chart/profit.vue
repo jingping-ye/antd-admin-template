@@ -103,7 +103,10 @@ export default {
             const sellGrid = params.filter((item) => item.seriesName === "当日平仓")[0];
 
             //  时间
-            const formatTime = _this.$moment(`20${benchmarkGrid.axisValueLabel} 16:00`).format("dddd, MMMDo, HH:mm");
+            const analyseTime = _this.$moment(Number(strRawCategoryData[0])).format("HH:mm"); // 每日统计时间
+            const formatTime = _this
+              .$moment(`20${benchmarkGrid.axisValueLabel} ${analyseTime}`)
+              .format("dddd, MMMDo, HH:mm"); // 真实格式化时间
 
             return (
               '<span style="font-size:12px">' +
