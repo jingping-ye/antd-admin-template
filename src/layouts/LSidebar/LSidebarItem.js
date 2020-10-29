@@ -3,13 +3,27 @@ const SubMenu = {
   template: `
       <a-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners" v-if="!menuInfo.meta.hide">
         <span slot="title" v-if="menuInfo.meta" >
-          <a-icon :type="menuInfo.meta.icon" v-if="menuInfo.meta.icon"/>
+          <template v-if="route.meta.icon">
+              <svg-icon
+                :name="route.meta.icon"
+                v-if="isExternalIcon(route.meta.icon)"
+                class="external-icon selected"
+              ></svg-icon>
+              <a-icon :type="route.meta.icon" v-else />
+            </template>
           <span>{{ menuInfo.meta.title }}</span>
         </span>
         <template v-for="item in menuInfo.children">
           <a-menu-item v-if="!item.meta.hide" :key="comPath(item.path)">
             <router-link :to="{path:comPath(item.path)}">
-              <a-icon :type="item.meta.icon" v-if="item.meta.icon" />
+              <template v-if="route.meta.icon">
+                <svg-icon
+                  :name="route.meta.icon"
+                  v-if="isExternalIcon(route.meta.icon)"
+                  class="external-icon selected"
+                ></svg-icon>
+                <a-icon :type="route.meta.icon" v-else />
+              </template>
               <span>{{ item.meta.title }}</span>
             </router-link>
           </a-menu-item>
@@ -23,6 +37,10 @@ const SubMenu = {
   name: "SubMenu",
   isSubMenu: true,
   methods: {
+    isExternalIcon(iconName) {
+      const svgIcon = this.$autoRegister.svgIcon;
+      return svgIcon.includes(iconName);
+    },
     getHide(menuInfo) {
       //  getHide
       console.log("menuInfo", menuInfo);

@@ -2,6 +2,7 @@
   <div class="user-manage">
     名字：<a-input v-model="userInfo.name"></a-input> 年龄：<a-input v-model="userInfo.age"></a-input>
     <a-button type="primary" @click="clickMe">点击我</a-button>
+    <svg-icon src="benefit" class="benefit-icon" />
   </div>
 </template>
 <script>
@@ -9,8 +10,6 @@
 const value = { msg: "Hello World!" };
 
 //  引入外部资源
-// import someThing from 'SomeThing';
-// import { mapState } from "vuex";
 export default {
   name: "userManage",
   mixins: [],
@@ -28,12 +27,6 @@ export default {
     };
   },
   computed: {
-    // ...mapState({
-    //   userInfo: (state) => {
-    //     console.log("this===", this);
-    //     state.userList[this.listIdx];
-    //   },
-    // }),
     userInfo: {
       get() {
         return this.$store.state.userList[this.listIdx];
@@ -59,11 +52,14 @@ export default {
   },
   filters: {},
   created() {},
-  mounted() {},
+  mounted() {
+    console.log("======", this.$autoRegister);
+  },
   destoryed() {},
 };
 </script>
-<style scoped>
-.user-manage {
+<style lang="scss" scoped>
+.benefit-icon {
+  color: #e9b242;
 }
 </style>

@@ -29,6 +29,10 @@ import "xe-utils";
 import VXETable from "vxe-table";
 import "vxe-table/lib/style.css";
 
+import * as autoRegister from "./autoRegister";
+
+Vue.prototype.$autoRegister = autoRegister;
+
 Vue.use(VXETable);
 
 Vue.config.productionTip = false;

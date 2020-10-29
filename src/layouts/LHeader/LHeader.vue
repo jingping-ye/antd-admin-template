@@ -1,4 +1,3 @@
-// LHeader.vue
 <template>
   <div class="l-header">
     <div class="l-header-left">{{ title }}</div>

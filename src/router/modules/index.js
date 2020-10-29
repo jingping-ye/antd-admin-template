@@ -14,6 +14,7 @@ const businessRoutes = [
         component: () => import("@/views/systemManage/userManage"),
         meta: {
           title: "用户管理",
+          icon: "user",
         },
       },
       {
@@ -22,6 +23,7 @@ const businessRoutes = [
         component: () => import("@/views/systemManage/permissionManage"),
         meta: {
           title: "权限管理",
+          icon: "benefit",
         },
       },
       {
