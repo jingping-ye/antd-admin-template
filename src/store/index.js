@@ -12,8 +12,20 @@ const ls = new SecureLS({ isCompression: false });
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    userList: [
+      {
+        name: "joy",
+        age: "123",
+      },
+    ],
+  },
+  mutations: {
+    setUserInfo(state, val) {
+      const { listIdx, data } = val;
+      state.userList[listIdx] = data;
+    },
+  },
   actions: {},
   plugins: [
     createPersistedState({

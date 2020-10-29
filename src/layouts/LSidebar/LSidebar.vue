@@ -3,13 +3,13 @@
     <a-menu style="width:200px;" class="menu" mode="inline" :selectedKeys="selectedKeys" :openKeys.sync="openKeys">
       <template v-for="route in routes">
         <template v-if="!route.meta.hide">
-          <a-menu-item v-if="isHasNoShowChild(route.children)" :key="route.path">
-            <router-link :to="{ path: route.path }">
+          <a-menu-item v-if="isHasNoShowChild(route.children)" :key="comPath(route.path)">
+            <router-link :to="{ path: comPath(route.path) }">
               <a-icon :type="route.meta.icon" v-if="route.meta.icon" />
               <span>{{ route.meta.title }}</span>
             </router-link>
           </a-menu-item>
-          <l-sidebar-item v-else :menu-info="route" :key="route.path" :base-url="route.path"></l-sidebar-item>
+          <l-sidebar-item v-else :menu-info="route" :key="route.path" :base-url="comPath(route.path)"></l-sidebar-item>
         </template>
       </template>
     </a-menu>
@@ -29,6 +29,7 @@ export default {
     return {
       //  常量
       //  状态
+      moduleBaseUrl: businessRoutes[0].path,
       flag: true,
       openKeys: [],
       selectedKeys: [],
@@ -55,6 +56,13 @@ export default {
     },
   },
   methods: {
+    comPath(path) {
+      if (path.startsWith("/")) {
+        return path;
+      } else {
+        return `${this.moduleBaseUrl}/${path}`;
+      }
+    },
     /***
      * 判断是否无显示的子路由
      */

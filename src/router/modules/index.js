@@ -24,6 +24,22 @@ const businessRoutes = [
           title: "权限管理",
         },
       },
+      {
+        path: "/e-table",
+        name: "ETable",
+        component: () => import("@/views/eTable/eTable"),
+        meta: {
+          title: "可扩展表格",
+        },
+      },
+      {
+        path: "/e-table2",
+        name: "ETable2",
+        component: () => import("@/views/eTable/eTable2"),
+        meta: {
+          title: "可扩展表格2",
+        },
+      },
     ],
   },
   {
