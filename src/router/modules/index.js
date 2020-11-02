@@ -40,6 +40,14 @@ const businessRoutes = [
           title: "可扩展表格2",
         },
       },
+      {
+        path: "/theme",
+        name: "ThemeConfig",
+        component: () => import("@/views/theme/theme"),
+        meta: {
+          title: "自定义主题配置",
+        },
+      },
     ],
   },
   {
