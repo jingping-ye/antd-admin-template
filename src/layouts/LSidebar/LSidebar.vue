@@ -17,7 +17,8 @@
 </template>
 <script>
 import LSidebarItem from "./LSidebarItem.js";
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
+import { businessRoutes } from "@/router/modules/index.js";
 export default {
   name: "sidebar",
   mixins: [],
@@ -35,12 +36,16 @@ export default {
     };
   },
   computed: {
-    /**
-     * 路由
-     */
-    ...mapState({
-      routes: (state) => state.app.menuList[0].children,
-    }),
+    routes() {
+      return businessRoutes[0].children;
+    },
+    // /**
+    //  * 路由
+    //  */
+    // ...mapState({
+    //   // routes: (state) => state.app.menuList[0].children,
+    //   routes: businessRoutes[0].children,
+    // }),
   },
   watch: {
     $route: {

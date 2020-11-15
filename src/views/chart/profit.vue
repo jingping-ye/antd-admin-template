@@ -401,6 +401,7 @@ export default {
             xAxisIndex: 2,
             yAxisIndex: 2,
             data: buyData,
+            stack: "每日买卖",
             itemStyle: {
               color: "#18a5ca",
             },
@@ -410,6 +411,7 @@ export default {
             type: "bar",
             xAxisIndex: 2,
             yAxisIndex: 2,
+            stack: "每日买卖",
             data: sellData,
             itemStyle: {
               color: "#DB843D",

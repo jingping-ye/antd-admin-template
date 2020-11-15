@@ -33,7 +33,10 @@ import "normalize.css/normalize.css";
 import "@/styles/index.scss";
 
 //  mock
-import "./mock";
+// import "./mock";
+
+import CMessage from "@/components/CMessage";
+Vue.use(CMessage);
 
 Vue.config.productionTip = false;
 

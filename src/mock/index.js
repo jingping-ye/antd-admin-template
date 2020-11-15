@@ -81,6 +81,15 @@ Mock.mock("/menu/list", {
             },
           ],
         },
+        {
+          path: "/file",
+          name: "File",
+          component: "/views/file/file",
+          meta: {
+            title: "文件上传与下载",
+            breadcrumb: false,
+          },
+        },
       ],
     },
   ],
