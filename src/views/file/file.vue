@@ -64,6 +64,25 @@
         </a-space>
       </a-space>
     </div>
+    <div>
+      <a-space>
+        <span>head方法</span>
+        <a-button type="primary" @click="visitHeadMethod">访问Head方法</a-button>
+      </a-space>
+    </div>
+    <div>
+      <a-space>
+        <span>option方法</span>
+        <a-button type="primary" @click="visitOptionMethod">访问Option方法</a-button>
+      </a-space>
+    </div>
+    <div>
+      <a-space>
+        <span>post方法</span>
+        <a-button type="primary" @click="addUserRequest">addUserRequest</a-button>
+      </a-space>
+    </div>
+    <a-button @click="updateUserRequest">updateUserRequest</a-button>
   </div>
 </template>
 <script>
@@ -126,6 +145,52 @@ export default {
           console.log("err", err);
         });
     },
+    visitHeadMethod() {
+      axios
+        .head("http://localhost:8890/file/img", {
+          responseType: "blob",
+          headers: {
+            "Content-Type": "image/png",
+          },
+        })
+        .then((res) => {
+          console.log("res", res);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+    },
+    visitOptionMethod() {
+      axios
+        .options("http://localhost:8890/file/img")
+        .then((res) => {
+          console.log("res===", res);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+    },
+    addUserRequest() {
+      axios
+        .post("http://localhost:8890/user/add", { username: "大哥别杀我", password: 123456 })
+        .then((res) => {
+          console.log("res===", res);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+    },
+    updateUserRequest() {
+      axios
+        .put("http://localhost:8890/user/update", { id: 12, username: "呵呵哒", password: "喜欢一个人" })
+        .then((res) => {
+          console.log("res", res);
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
+    },
+
     /**
      * HTTP REQUEST
      * 获取用户列表
@@ -205,6 +270,7 @@ export default {
           },
         })
         .then((res) => {
+          console.log("res===", res);
           let blob = new Blob([res.data], { type: "image/png" });
           let link = URL.createObjectURL(blob);
           this.imgSrc = link;
