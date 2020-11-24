@@ -44,7 +44,8 @@ export default {
        * 转换单位，以K为单位, 1000置换
        */
       const toKUnit = (num, keepDigit = 1) => {
-        return `${(num / 1000).toFixed(keepDigit)}K`;
+        console.log("keepDigit===", keepDigit);
+        return `${num / 1000}K`;
       };
 
       /**
@@ -177,6 +178,9 @@ export default {
             boundaryGap: true,
             axisLine: {
               onZero: true,
+              lineStyle: {
+                color: "yellow",
+              },
             },
             axisTick: { show: false },
             axisLabel: { show: false },
@@ -211,7 +215,10 @@ export default {
             axisLine: { onZero: true },
             axisTick: { show: false },
             splitLine: { show: true },
-            axisLabel: { show: true, fontSize: 10 },
+            axisLabel: {
+              show: true,
+              fontSize: 10,
+            },
             splitNumber: 20,
             min: "dataMin",
             max: "dataMax",
@@ -222,7 +229,7 @@ export default {
             name: "收益",
             nameLocation: "center",
             scale: false,
-            axisTick: { show: false },
+            axisTick: { show: true },
             position: "right",
             // splitNumber: 8,
             interval: 5,
@@ -240,10 +247,14 @@ export default {
               show: true,
             },
             axisLine: {
-              show: false,
+              show: true,
+              lineStyle: {
+                color: "red",
+              },
             }, // 是否显示y轴
             nameGap: 10,
             nameRotate: -90,
+            show: true,
           },
           {
             name: "每日盈亏",
@@ -271,7 +282,7 @@ export default {
             },
             nameGap: 10,
             nameRotate: -90,
-            zlevel: 999,
+            zlevel: 0,
           },
           {
             name: "每日买卖",
@@ -299,7 +310,6 @@ export default {
             },
             nameGap: 10,
             nameRotate: -90,
-            zlevel: 999,
           },
         ],
         dataZoom: [
