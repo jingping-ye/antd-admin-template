@@ -40,6 +40,31 @@ const businessRoutes = [
           title: "可扩展表格2",
         },
       },
+      {
+        path: "/mul-tab",
+        name: "MulTab",
+        component: () => import("@/views/mulTab/mulTab"),
+        meta: {
+          title: "多页签切换",
+        },
+      },
+      {
+        path: "/input-field",
+        name: "InputField1",
+        component: () => import("@/views/inputField/inputField"),
+        meta: {
+          title: "输入区1",
+          alive: false,
+        },
+      },
+      {
+        path: "/input-field2",
+        name: "InputField2",
+        component: () => import("@/views/inputField/inputField2"),
+        meta: {
+          title: "输入区2",
+        },
+      },
     ],
   },
   {

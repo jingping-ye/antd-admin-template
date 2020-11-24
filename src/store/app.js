@@ -8,6 +8,8 @@
  */
 const state = {
   menuList: [], // 菜单列表
+  tagList: [], // 标签列表
+  selectedTag: "UserManage1", // 选中的标签
 };
 
 const getters = {};
@@ -15,6 +17,12 @@ const getters = {};
 const mutations = {
   setMenuList(state, value) {
     state.menuList = value;
+  },
+  setTagList(state, value) {
+    state.tagList = value;
+  },
+  setSelectedTag(state, value) {
+    state.selectedTag = value;
   },
 };
 
