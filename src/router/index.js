@@ -3,18 +3,20 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-import { beforeRouterHook, afterRouterHook } from "./common/routerHook";
+import { afterRouterHook } from "./common/routerHook";
 
 import "./common/optimize";
 
 import { staticRoutes } from "./common/staticRoutes";
 import { businessRoutes } from "./modules/index";
 
+import { businessRoutes } from "./modules/index";
+
 const router = new VueRouter({
   routes: [...staticRoutes, ...businessRoutes],
 });
 
-router.beforeEach((to, from, next) => beforeRouterHook(to, from, next, router));
+// router.beforeEach((to, from, next) => beforeRouterHook(to, from, next, router));
 router.afterEach(afterRouterHook);
 
 router._addRoutes = function(params) {

@@ -1,12 +1,19 @@
 <template>
   <div class="user-manage">
-    名字：<a-input v-model="userInfo.name"></a-input> 年龄：<a-input v-model="userInfo.age"></a-input>
-    <a-button type="primary" @click="clickMe">点击我</a-button>
+    userManage组件
+    <div id="test-text">1231</div>
+    <a-space>
+      <a-button @click="printSource">输出源码</a-button>
+      <a-button @click="printExtend">输出extend后的代码</a-button>
+      <a-button type="primary" @click="printNew">输出new过后的代码</a-button>
+    </a-space>
   </div>
 </template>
 <script>
 //  常量声明
 const value = { msg: "Hello World!" };
+import testTest from "./testText";
+import Vue from "vue";
 
 //  引入外部资源
 // import someThing from 'SomeThing';
@@ -49,12 +56,29 @@ export default {
   },
   watch: {},
   methods: {
-    clickMe() {
-      console.log("userInfo", JSON.stringify(this.userInfo));
+    printSource() {
+      console.log("source", testTest);
     },
-
-    test() {
-      console.log("Hello World!");
+    printExtend() {
+      //   ƒ VueComponent (options) {
+      //   this._init(options);
+      // }
+      console.log("extend", Vue.extend(testTest).prototype);
+    },
+    printNew() {
+      let what = Vue.extend({
+        ...testTest,
+        data: function() {
+          return {
+            text: "事实上罗",
+            params2: "试一试",
+          };
+        },
+      }); // 创建一个组件类，声明或者创建
+      const instance = new what(); // 实例化组件
+      console.log("instance", instance);
+      instance.text = "我修改了实例";
+      instance.$mount("#test-text");
     },
   },
   filters: {},

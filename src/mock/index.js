@@ -46,6 +46,50 @@ Mock.mock("/menu/list", {
             breadcrumb: false,
           },
         },
+        {
+          path: "/chart",
+          name: "Chart",
+          component: "/layouts/TransitionRouter/TransitionRouter.vue",
+          redirect: "/chart1",
+          meta: {
+            title: "图表",
+          },
+          children: [
+            {
+              path: "/chart1",
+              name: "Chart1",
+              component: "/views/chart/chart1",
+              meta: {
+                title: "图表1",
+              },
+            },
+            {
+              path: "/down",
+              name: "DownChart",
+              component: "/views/chart/downChart",
+              meta: {
+                title: "道琼斯指数",
+              },
+            },
+            {
+              path: "/profit",
+              name: "Profit",
+              component: "/views/chart/profit",
+              meta: {
+                title: "策略收益图",
+              },
+            },
+          ],
+        },
+        {
+          path: "/file",
+          name: "File",
+          component: "/views/file/file",
+          meta: {
+            title: "文件上传与下载",
+            breadcrumb: false,
+          },
+        },
       ],
     },
   ],

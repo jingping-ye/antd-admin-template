@@ -17,7 +17,12 @@
 </template>
 <script>
 import LSidebarItem from "./LSidebarItem.js";
+<<<<<<< HEAD
 import { businessRoutes } from "../../router/modules/index";
+=======
+// import { mapState } from "vuex";
+import { businessRoutes } from "@/router/modules/index.js";
+>>>>>>> chart/dev
 export default {
   name: "sidebar",
   mixins: [],
@@ -36,13 +41,16 @@ export default {
     };
   },
   computed: {
-    /**
-     * 路由
-     */
-    routes: function() {
+    routes() {
       return businessRoutes[0].children;
     },
-    //  routes: (state) => state.app.menuList[0].children
+    // /**
+    //  * 路由
+    //  */
+    // ...mapState({
+    //   // routes: (state) => state.app.menuList[0].children,
+    //   routes: businessRoutes[0].children,
+    // }),
   },
   watch: {
     $route: {

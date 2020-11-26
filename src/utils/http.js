@@ -30,7 +30,7 @@ let httpInstance = axios.create({
 });
 
 //  请求表单
-httpInstance.formdata = (url, data, config) => {
+httpInstance.formData = (url, data, config) => {
   return httpInstance.post(url, data, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -105,7 +105,7 @@ httpInstance.interceptors.response.use(
         return Promise.reject(error);
       }
     } else {
-      ErrorMessage(`网络出错啦，请求失败！`);
+      ErrorMessage(error);
       return Promise.reject(error);
     }
   }

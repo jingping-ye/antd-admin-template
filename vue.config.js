@@ -36,7 +36,7 @@ const vueConfig = {
         target: BaseURL,
         changeOrigin: true,
         pathRewrite: {
-          "^/proxy-service": "/",
+          "^/proxy-service": "",
         },
       },
     },
