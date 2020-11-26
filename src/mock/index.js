@@ -4,11 +4,35 @@ Mock.setup({
   timeout: "300 - 600",
 });
 
+//   用户权限
 Mock.mock("/user/perm", {
   code: 4000,
   data: [],
 });
 
+Mock.mock("/empty_strategy", () => {
+  const data = `# coding=utf-8
+from __future__ import print_function, absolute_import
+from gm.api import *
+
+# 策略中必须有init方法
+def init(context):
+    pass
+
+if __name__ == '__main__':
+    run(strategy_id='strategy_id',
+        filename='main.py',
+        mode=MODE_BACKTEST,
+        token='token_id',
+        backtest_start_time='2016-06-17 13:00:00',
+        backtest_end_time='2017-08-21 15:00:00')`;
+  return {
+    code: 4000,
+    errMsg: data,
+  };
+});
+
+//   菜单列表
 Mock.mock("/menu/list", {
   code: 4000,
   errMsg: [
