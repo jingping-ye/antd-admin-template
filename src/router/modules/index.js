@@ -66,6 +66,14 @@ const businessRoutes = [
               title: "策略收益图",
             },
           },
+          {
+            path: "/single-chart",
+            name: "SingleChart",
+            component: () => import("@/views/chart/singleChart"),
+            meta: {
+              title: "单张图表",
+            },
+          },
         ],
       },
       {
