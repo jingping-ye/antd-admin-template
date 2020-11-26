@@ -68,6 +68,18 @@ const vueConfig = {
   },
   productionSourceMap: false,
   runtimeCompiler: true,
+  css: {
+    loaderOptions: {
+      less: {
+        // modifyVars: {
+        //   "border-radius-base": "2px",
+        //   "body-background": "#292828",
+        // },
+        // DO NOT REMOVE THIS LINE
+        javascriptEnabled: true,
+      },
+    },
+  },
 };
 
 module.exports = vueConfig;

@@ -85,6 +85,14 @@ const businessRoutes = [
           breadcrumb: false,
         },
       },
+      {
+        path: "/theme",
+        name: "ThemeConfig",
+        component: () => import("@/views/theme/theme"),
+        meta: {
+          title: "自定义主题配置",
+        },
+      },
     ],
   },
 ];

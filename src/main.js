@@ -8,12 +8,7 @@ import store from "./store";
 
 //  ant-design-vue
 import Antd from "ant-design-vue";
-import "ant-design-vue/dist/antd.css";
-
-//  echart
-import echarts from "echarts";
-
-Vue.prototype.$echarts = echarts;
+// import "ant-design-vue/dist/antd.less";
 
 Vue.use(Antd);
 
@@ -29,8 +24,8 @@ Vue.prototype.$moment = moment;
 //  normal css
 import "normalize.css/normalize.css";
 
-//  global css
-import "@/styles/index.scss";
+//  theme css
+import "./theme/index.less";
 
 //  mock
 // import "./mock";
