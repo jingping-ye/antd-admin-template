@@ -33,12 +33,6 @@ export default {
     };
   },
   computed: {
-    // ...mapState({
-    //   userInfo: (state) => {
-    //     console.log("this===", this);
-    //     state.userList[this.listIdx];
-    //   },
-    // }),
     userInfo: {
       get() {
         return this.$store.state.userList[this.listIdx];
@@ -81,11 +75,14 @@ export default {
   },
   filters: {},
   created() {},
-  mounted() {},
+  mounted() {
+    console.log("======", this.$autoRegister);
+  },
   destoryed() {},
 };
 </script>
-<style scoped>
-.user-manage {
+<style lang="scss" scoped>
+.benefit-icon {
+  color: #e9b242;
 }
 </style>

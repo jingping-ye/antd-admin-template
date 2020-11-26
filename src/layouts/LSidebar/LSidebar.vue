@@ -1,11 +1,26 @@
 <template>
   <div class="sidebar">
-    <a-menu style="width:200px;" class="menu" mode="inline" :selectedKeys="selectedKeys" :openKeys.sync="openKeys">
+    <a-menu
+      style="width:200px;"
+      class="menu"
+      mode="inline"
+      theme="dark"
+      :selectedKeys="selectedKeys"
+      :openKeys.sync="openKeys"
+    >
       <template v-for="route in routes">
         <template v-if="!route.meta.hide">
           <a-menu-item v-if="isHasNoShowChild(route.children)" :key="comPath(route.path)">
             <router-link :to="{ path: comPath(route.path) }">
-              <a-icon :type="route.meta.icon" v-if="route.meta.icon" />
+              <template v-if="route.meta.icon">
+                <svg-icon
+                  :name="route.meta.icon"
+                  v-if="isExternalIcon(route.meta.icon)"
+                  class="external-icon selected"
+                ></svg-icon>
+                <a-icon :type="route.meta.icon" v-else />
+              </template>
+
               <span>{{ route.meta.title }}</span>
             </router-link>
           </a-menu-item>
@@ -64,6 +79,10 @@ export default {
     },
   },
   methods: {
+    isExternalIcon(iconName) {
+      const svgIcon = this.$autoRegister.svgIcon;
+      return svgIcon.includes(iconName);
+    },
     comPath(path) {
       if (path.startsWith("/")) {
         return path;
@@ -98,5 +117,11 @@ export default {
 .menu {
   min-height: calc(100vh - 65px);
   height: 100%;
+}
+.external-icon {
+  margin-right: 10px;
+}
+.ant-menu-item-selected .selected {
+  color: #e9b242;
 }
 </style>

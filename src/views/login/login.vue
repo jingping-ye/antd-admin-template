@@ -120,7 +120,9 @@ export default {
   },
   filters: {},
   created() {},
-  mounted() {},
+  mounted() {
+    // console.log("===", this.$autoRegister.globalComp);
+  },
   destoryed() {},
 };
 </script>
