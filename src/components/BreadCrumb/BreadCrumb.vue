@@ -42,8 +42,6 @@ export default {
       } else {
         this.isShow = true;
       }
-
-      console.log("this.isShow", this.isShow);
     },
     getNavList() {
       let matched = this.$route.matched.filter((item) => item.meta && item.meta.title);

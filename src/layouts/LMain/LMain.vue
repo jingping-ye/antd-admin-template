@@ -1,7 +1,10 @@
 <template>
   <div class="l-main">
     <transition name="fade-transform" mode="out-in">
-      <router-view :key="key" />
+      <keep-alive v-if="$route.meta.keepAlive">
+        <router-view :key="key" />
+      </keep-alive>
+      <router-view :key="key" v-else />
     </transition>
   </div>
 </template>
@@ -10,12 +13,27 @@ export default {
   name: "LMain",
   components: {},
   props: {},
+  data() {
+    return {
+      excludeView: "",
+    };
+  },
   computed: {
     key() {
       return this.$route.path;
     },
   },
-  watch: {},
+  watch: {
+    $router: {
+      handler(newV) {
+        if (newV.meta) {
+          if (Object.prototype.hasOwnProperty.call(newV.meta, "alive") && !newV.meta.alive) {
+            this.excludeView = newV.name;
+          }
+        }
+      },
+    },
+  },
   methods: {},
   filters: {},
   created() {},

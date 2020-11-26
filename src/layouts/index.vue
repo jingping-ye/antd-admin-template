@@ -5,6 +5,7 @@
       <l-sidebar class="l-sidebar" />
       <div class="main-box">
         <Breadcrumb />
+        <MulTab />
         <div class="main-container">
           <l-main />
         </div>
@@ -19,6 +20,7 @@ import LHeader from "./LHeader/LHeader";
 import LSidebar from "./LSidebar/LSidebar";
 import LMain from "./LMain/LMain";
 import LFooter from "./LFooter/LFooter";
+import MulTab from "./MulTab/MulTab";
 
 //  common component
 import Breadcrumb from "@/components/BreadCrumb/BreadCrumb";
@@ -32,6 +34,7 @@ export default {
     LMain,
     LFooter,
     Breadcrumb,
+    MulTab,
   },
   props: {},
   data() {

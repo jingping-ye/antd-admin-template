@@ -16,8 +16,6 @@ import testTest from "./testText";
 import Vue from "vue";
 
 //  引入外部资源
-// import someThing from 'SomeThing';
-// import { mapState } from "vuex";
 export default {
   name: "userManage",
   mixins: [],
