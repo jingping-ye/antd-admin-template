@@ -10,8 +10,6 @@ import "./common/optimize";
 import { staticRoutes } from "./common/staticRoutes";
 import { businessRoutes } from "./modules/index";
 
-import { businessRoutes } from "./modules/index";
-
 const router = new VueRouter({
   routes: [...staticRoutes, ...businessRoutes],
 });

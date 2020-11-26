@@ -32,12 +32,8 @@
 </template>
 <script>
 import LSidebarItem from "./LSidebarItem.js";
-<<<<<<< HEAD
-import { businessRoutes } from "../../router/modules/index";
-=======
 // import { mapState } from "vuex";
 import { businessRoutes } from "@/router/modules/index.js";
->>>>>>> chart/dev
 export default {
   name: "sidebar",
   mixins: [],
